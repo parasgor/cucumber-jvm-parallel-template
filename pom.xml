@@ -19,13 +19,15 @@
         <junit.version>4.12</junit.version>
         <logback.version>1.2.3</logback.version>
         <slf4j.version>1.7.21</slf4j.version>
-        <lombok.version>1.16.20</lombok.version>
         <webdrivermanager.version>3.0.0</webdrivermanager.version>
+        <guice.version>4.2.1</guice.version>
+        <lombok.version>1.18.2</lombok.version>
+        <mycila.version>4.0.rc1</mycila.version>
         <!--Plugin Versions-->
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <cucumber.version>1.2.5</cucumber.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
-        <maven-cucumber-reporting.version>3.15.0</maven-cucumber-reporting.version>
+        <maven-cucumber-reporting.version>3.8.0</maven-cucumber-reporting.version>
         <cucumber-jvm-parallel-plugin.version>4.2.0</cucumber-jvm-parallel-plugin.version>
         <browser/>
         <threads/>
@@ -67,6 +69,30 @@
             <artifactId>cucumber-junit</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-guice</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mycila.guice.extensions</groupId>
+            <artifactId>mycila-guice-closeable</artifactId>
+            <version>${mycila.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mycila.guice.extensions</groupId>
+            <artifactId>mycila-guice-jsr250</artifactId>
+            <version>${mycila.version}</version>
+        </dependency>
+
 
         <!-- logging -->
         <dependency>
@@ -238,29 +264,30 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>net.masterthought</groupId>-->
-                <!--<artifactId>maven-cucumber-reporting</artifactId>-->
-                <!--<version>${maven-cucumber-reporting.version}</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>execution</id>-->
-                        <!--<phase>verify</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>generate</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<projectName>${project.name}</projectName>-->
-                            <!--&lt;!&ndash; output directory for the generated report &ndash;&gt;-->
-                            <!--<outputDirectory>${project.build.directory}/site/cucumber-reports</outputDirectory>-->
-                            <!--<cucumberOutput>${cucumberOutputDirectory}</cucumberOutput>-->
-
-                            <!--&lt;!&ndash;shows additional column in report - 'Device'&ndash;&gt;-->
-                            <!--<parallelTesting>true</parallelTesting>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>${maven-cucumber-reporting.version}</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>${project.name}</projectName>
+                            <!-- output directory for the generated report -->
+                            <outputDirectory>${project.build.directory}/site/cucumber-reports</outputDirectory>
+                            <cucumberOutput>${cucumberOutputDirectory}</cucumberOutput>
+                            <!--<skippedFails>true</skippedFails>-->
+                            <buildNumber>${project.version}</buildNumber>
+                            <!--shows additional column in report - 'Device'-->
+                            <parallelTesting>true</parallelTesting>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 

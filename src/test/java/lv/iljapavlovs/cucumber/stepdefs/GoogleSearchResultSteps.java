@@ -1,34 +1,28 @@
 package lv.iljapavlovs.cucumber.stepdefs;
 
+import com.google.inject.Inject;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.runtime.java.guice.ScenarioScoped;
+import lombok.extern.slf4j.Slf4j;
 import lv.iljapavlovs.cucumber.pageobjects.GooglePage;
 import lv.iljapavlovs.cucumber.pageobjects.GoogleSearchResultPage;
+import lv.iljapavlovs.cucumber.util.DataHolder;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.Assert.fail;
 
-public class Stepdefs {
-    private GooglePage googlePage;
+@ScenarioScoped
+@Slf4j
+public class GoogleSearchResultSteps {
+
+    @Inject
+    DataHolder dataHolder;
+
     private GoogleSearchResultPage googleSearchResultPage;
 
-    /*
-    Driver injection is not needed since driver is injected via Dependency Injection by piccocontainer
-        public Stepdefs(SharedDriver driver) {
-            this.driver = driver;
-        }
-    */
-
-    @Given("^I navigate to Google page")
-    public void iNavigateToGoogleCom() throws Throwable {
-        googlePage = GooglePage.navigate();
-    }
-
-    @When("^I search for \"([^\"]*)\"$")
-    public void iSearchFor(String searchItem) throws Throwable {
-        googleSearchResultPage = googlePage.searchFor(searchItem);
-    }
 
     @Then("^first result should contain word \"([^\"]*)\"$")
     public void firstResultShouldContainWord(String searchResult) throws Throwable {
@@ -43,5 +37,15 @@ public class Stepdefs {
     @When("^I wait for (\\d+) seconds$")
     public void iWaitForSeconds(int waitTimeInSeconds) throws Throwable {
         Thread.sleep(waitTimeInSeconds*1000);
+    }
+
+    @Then("^search result is displayed$")
+    public void searchResultIsDisplayed() throws Throwable {
+        googleSearchResultPage = new GoogleSearchResultPage();
+    }
+
+    @Then("^I retrieve variable in other class$")
+    public void iRetrieveVariableInOtherClass() throws Throwable {
+        assertThat(dataHolder.getSharedVariable()).isNotNull();
     }
 }

@@ -1,5 +1,6 @@
 package lv.iljapavlovs.cucumber.pageobjects;
 
+import lv.iljapavlovs.cucumber.core.WebElementHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,4 +22,9 @@ public class GoogleSearchResultPage extends Page {
     public List<WebElement> getSearchResultElements(){
         return searchResultElements;
     };
+
+    public boolean isPageDisplayed() {
+        return WebElementHelper.isElementDisplayed(searchResultElements.get(0));
+    }
+
 }
