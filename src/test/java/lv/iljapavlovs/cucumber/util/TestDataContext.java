@@ -1,7 +1,9 @@
 package lv.iljapavlovs.cucumber.util;
 
+import cucumber.api.Scenario;
 import lombok.Getter;
 import lombok.Setter;
+import lv.iljapavlovs.cucumber.config.TestInfo;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.text.SimpleDateFormat;
@@ -15,14 +17,25 @@ import java.util.function.Supplier;
 public class TestDataContext {
 
     private static final TestDataContext INSTANCE = new TestDataContext();
-    private Map<String, Supplier<String>> testDataMap = new HashMap<>();
+    private Map<String, Object> testDataMap = new HashMap<>();
+    public TestInfo testInfo = new TestInfo()
 
-    private TestDataContext() {
-        this.testDataMap.put("RND3", () -> RandomStringUtils.random(3));
-        this.testDataMap.put("ddMMyyyyHHmmss", () -> new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date()));
+    public TestDataContext() {
+        this.testDataMap.put("Test", "Test");
     }
 
     public static TestDataContext getInstance() {
         return INSTANCE;
+    }
+
+    public void setTestData(String name, Object object){
+        testDataMap.put(name, object);
+    }
+
+    public Object getTestData(String name) throws Exception{
+        if(!testDataMap.containsKey(name)){
+            throw new Exception(name + " does not exist. Please set data before get.");
+        }
+        return testDataMap.get(name);
     }
 }

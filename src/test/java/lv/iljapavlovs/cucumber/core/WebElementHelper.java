@@ -18,6 +18,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 @Slf4j
 public class WebElementHelper {
     public final static int WAIT_SHORT_SECONDS =  ApplicationProperties.getInteger(ApplicationProperty.WAIT_SHORT_SECONDS);
@@ -138,6 +140,15 @@ public class WebElementHelper {
     public static String getElementColor(WebElement element) {
         waitForVisibility(element);
         return element.getCssValue("color");
+    }
+
+    public static List<WebElement> getListOfElements(By locator){
+        return DriverBase.getDriver().findElements(locator);
+    }
+
+    public static void refreshPage() throws InterruptedException {
+         DriverBase.getDriver().navigate().refresh();
+         Thread.sleep(2000);
     }
 
 }

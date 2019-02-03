@@ -30,7 +30,7 @@ public class ApplicationProperties {
                     setProperty(ApplicationProperty.PROXY_PORT.name, "8080");
 
                     //application URL's
-                    setProperty(ApplicationProperty.APP_URL.name, "https://google.com");
+                    setProperty(ApplicationProperty.APP_URL.name, "http://hotel-test.equalexperts.io/");
 
                     //Selenium grid settings
                     setProperty(ApplicationProperty.REMOTE_DRIVER.name, "false");
@@ -42,7 +42,7 @@ public class ApplicationProperties {
 
                     //TODO - this should be changed for local execution
                     setProperty(ApplicationProperty.CHROME_BINARY_PATH.name, "");
-                    setProperty(ApplicationProperty.FIREFOX_BINARY_PATH.name, "C:\\Users\\ipavlov\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
+                    setProperty(ApplicationProperty.FIREFOX_BINARY_PATH.name, "C:\\Users\\gorpa\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
 
 
                 }
@@ -55,7 +55,7 @@ public class ApplicationProperties {
             });
             put("test", new Properties() { //DEV environment for running CI tests
                 {
-                    setProperty(ApplicationProperty.APP_URL.name, "https://google.com");
+                    setProperty(ApplicationProperty.APP_URL.name, "http://hotel-test.equalexperts.io/");
                     setProperty(ApplicationProperty.REMOTE_DRIVER.name, "true");
                 }
             });
