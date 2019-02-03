@@ -18,7 +18,7 @@ public class TestDataContext {
 
     private static final TestDataContext INSTANCE = new TestDataContext();
     private Map<String, Object> testDataMap = new HashMap<>();
-    public TestInfo testInfo = new TestInfo()
+    public TestInfo testInfo = new TestInfo();
 
     public TestDataContext() {
         this.testDataMap.put("Test", "Test");
