@@ -119,12 +119,12 @@ public class Stepdefs extends  StepsModel
 
             if(!isEntryInGrid) {
                 if( retryCounter==2) {
-                    scenario.write("Firstname - Expected -" + expectedFirstName);
-                    scenario.write("Surname - Expected -" + expectedSurName);
-                    scenario.write("Total price - Expected -" + expectedTotalPrice);
-                    scenario.write("CheckinDate - Expected -" + expectedCheckInDate);
-                    scenario.write("Checkoutdate - Expected -" + expectedCheckOutDate);
-                    scenario.write("Deposit - Expected -" + expectedDepositStatus);
+                    System.out.println("Firstname - Expected -" + expectedFirstName);
+                    System.out.println(("Surname - Expected -" + expectedSurName);
+                    System.out.println("Total price - Expected -" + expectedTotalPrice);
+                    System.out.println(("CheckinDate - Expected -" + expectedCheckInDate);
+                    System.out.println(("Checkoutdate - Expected -" + expectedCheckOutDate);
+                    System.out.println(("Deposit - Expected -" + expectedDepositStatus);
 
 
                     Assert.fail("Newly created entry is not available in list");
