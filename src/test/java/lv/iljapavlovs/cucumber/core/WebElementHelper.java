@@ -147,6 +147,7 @@ public class WebElementHelper {
     }
 
     public static void refreshPage() throws InterruptedException {
+         System.out.println("refreshing page..");
          DriverBase.getDriver().navigate().refresh();
          Thread.sleep(2000);
     }

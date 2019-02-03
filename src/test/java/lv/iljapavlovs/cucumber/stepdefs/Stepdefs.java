@@ -94,23 +94,34 @@ public class Stepdefs extends  StepsModel
     @Then("^I should be able to see new entry in table$")
     public void iShouldBeAbleToSeeNewEntryInTable() throws Throwable {
 
-        for(int retryCounter = 0; retryCounter<=2; retryCounter++ )
-        {
+        String expectedFirstName = resourceManager.getTestData("firstname").toString();
+        String expectedSurName = resourceManager.getTestData("surname").toString();
+        String expectedTotalPrice = resourceManager.getTestData("totalPrice").toString();
+        String expectedCheckInDate = resourceManager.getTestData("checkinDate").toString();
+        String expectedCheckOutDate = resourceManager.getTestData("checkoutDate").toString();
+        String expectedDepositStatus = resourceManager.getTestData("depositStatus").toString();
+
+//        System.out.println("Firstname : Expected -" + expectedFirstName);
+//        System.out.println("Surname : Expected -" + expectedSurName);
+//        System.out.println("Total price : Expected -" + expectedTotalPrice);
+//        System.out.println("CheckinDate : Expected -" + expectedCheckInDate);
+//        System.out.println("Checkoutdate : Expected -" + expectedCheckOutDate);
+//        System.out.println("Deposit : Expected -" + expectedDepositStatus);
+
+
+//        for(int retryCounter = 0; retryCounter<=2; retryCounter++ )
+//        {
 
             //Verify the added entry in list
-            List<WebElement> lstOfAllBookings = hotelBookingFormPage.getAllBookings();
-            if (lstOfAllBookings.size() > 1){
-                //removed header row
-                lstOfAllBookings.remove(0);
-            }
-            System.out.println("Looks like there are -"  + (lstOfAllBookings.size()-1) + " entries in list");
-
-            String expectedFirstName = resourceManager.getTestData("firstname").toString();
-            String expectedSurName = resourceManager.getTestData("surname").toString();
-            String expectedTotalPrice = resourceManager.getTestData("totalPrice").toString();
-            String expectedCheckInDate = resourceManager.getTestData("checkinDate").toString();
-            String expectedCheckOutDate = resourceManager.getTestData("checkoutDate").toString();
-            String expectedDepositStatus = resourceManager.getTestData("depositStatus").toString();
+//            List<WebElement> lstOfAllBookings = hotelBookingFormPage.getAllBookings();
+//            if (lstOfAllBookings.size() > 1){
+//                //removed header row
+//                lstOfAllBookings.remove(0);
+//            }
+//            System.out.println("Looks like there are -"  + (lstOfAllBookings.size()-1) + " entries in list");
+//
+//
+//            for( WebElement bookingRow : lstOfAllBookings)
 
             boolean isEntryInGrid =  isEntryAvailInGrid(
                     expectedFirstName,expectedSurName,expectedTotalPrice, expectedDepositStatus,
@@ -118,24 +129,17 @@ public class Stepdefs extends  StepsModel
             // Assert.assertTrue("Deleted entries still there in list", isEntryInGrid);
 
             if(!isEntryInGrid) {
-                if( retryCounter==2) {
-                    System.out.println("Firstname - Expected -" + expectedFirstName);
-                    System.out.println("Surname - Expected -" + expectedSurName);
-                    System.out.println("Total price - Expected -" + expectedTotalPrice);
-                    System.out.println("CheckinDate - Expected -" + expectedCheckInDate);
-                    System.out.println("Checkoutdate - Expected -" + expectedCheckOutDate);
-                    System.out.println("Deposit - Expected -" + expectedDepositStatus);
-
-
+//                if( retryCounter==2) {
                     Assert.fail("Newly created entry is not available in list");
                 }else {
                     System.out.println("Trying for one more time to find on the page");
-
-                    continue;
+//                    WebElementHelper.refreshPage();
+//
+//                    continue;
                 }
-            }
 
-        }
+
+//        }
 
 
 

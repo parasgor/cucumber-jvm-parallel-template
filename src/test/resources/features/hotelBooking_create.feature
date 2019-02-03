@@ -17,9 +17,9 @@ Feature: Create & Delete Hotel booking
     Examples:
       | firstname | surname | totalPrice | checkinDate | checkoutDate | paidOrNotPaid |
       | Oscar     | Green   | 10         | 2019-01-02  | 2019-02-03   | true          |
-#      | John      | Oliver  | 10         | 2019-01-01  | 2019-02-02   | false         |
-#      | Tusok     | Nouin   | 10         | 2019-01-01  | 2019-02-02   | false         |
-#      |           |         | 10         | 2019-01-01  | 2019-02-02   | false         |
+      | John      | Oliver  | 10         | 2019-01-01  | 2019-02-02   | false         |
+      | Tusok     | Nouin   | 10         | 2019-01-01  | 2019-02-02   | false         |
+      |           |         | 10         | 2019-01-01  | 2019-02-02   | false         |
 
 
 
